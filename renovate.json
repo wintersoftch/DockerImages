@@ -6,5 +6,26 @@
   "vulnerabilityAlerts": {
     "enabled": true
   },
-  "minimumReleaseAge": "14 days"
+  "minimumReleaseAge": "14 days",
+  "dockerfile": {
+    "fileMatch": ["(^|/)[^/]+/Dockerfile$"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["(^|/)Dockerfile$"],
+      "matchStrings": [
+        "apk add [^\\n]*?\\s(?<depName>[a-z0-9-]+)=(?<currentValue>[0-9][^\\s&\\\\|]*)"
+      ],
+      "datasourceTemplate": "repology",
+      "depNameTemplate": "alpine_3_23/{{{depName}}}",
+      "versioningTemplate": "loose"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": ["repology"],
+      "groupName": "alpine packages"
+    }
+  ]
 }
