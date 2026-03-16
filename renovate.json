@@ -8,12 +8,16 @@
   },
   "minimumReleaseAge": "14 days",
   "dockerfile": {
-    "fileMatch": ["(^|/)[^/]+/Dockerfile$"]
+    "managerFilePatterns": [
+      "/(^|/)[^/]+/Dockerfile$/"
+    ]
   },
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["(^|/)Dockerfile$"],
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
+      ],
       "matchStrings": [
         "apk add [^\\n]*?(\\s|--no-cache\\s)(?<depName>[a-z0-9-]+)=(?<currentValue>[0-9][^\\s&\\\\|]*)"
       ],
@@ -25,7 +29,9 @@
   ],
   "packageRules": [
     {
-      "matchDatasources": ["repology"],
+      "matchDatasources": [
+        "repology"
+      ],
       "groupName": "alpine packages"
     }
   ]
