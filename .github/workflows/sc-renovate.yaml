@@ -33,3 +33,4 @@ jobs:
           RENOVATE_GIT_AUTHOR: "Renovate Bot <renovate-bot@users.noreply.github.com>"
           RENOVATE_REPOSITORIES: '["wintersoftch/DockerImages"]' # Or use RENOVATE_AUTODISCOVER
           RENOVATE_TOKEN: ${{ steps.app-token.outputs.token }}
+          LOG_LEVEL: debug
