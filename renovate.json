@@ -3,6 +3,7 @@
   "extends": [
     "config:best-practices"
   ],
+  "gitAuthor": "Wintersoft Renovate Bot[bot] <2513063+WintersoftRenovateBot[bot]@users.noreply.github.com>",
   "vulnerabilityAlerts": {
     "enabled": true
   },
