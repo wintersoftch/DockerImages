@@ -3,7 +3,6 @@
   "extends": [
     "config:best-practices"
   ],
-  "gitAuthor": "Wintersoft Renovate Bot[bot] <2513063+WintersoftRenovateBot[bot]@users.noreply.github.com>",
   "vulnerabilityAlerts": {
     "enabled": true
   },
@@ -14,27 +13,41 @@
       "/(^|/)[^/]+/Dockerfile$/"
     ]
   },
+  "automerge": false,
+  "automergeType": "pr",
+  "platformAutomerge": true,
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": [
-        "/(^|/)Dockerfile$/"
-      ],
+      "fileMatch": ["(^|/)Dockerfile$"],
       "matchStrings": [
         "apk add [^\\n]*?(\\s|--no-cache\\s)(?<depName>[a-z0-9-]+)=(?<currentValue>[0-9][^\\s&\\\\|]*)"
       ],
-      "matchStringsStrategy": "any",
       "datasourceTemplate": "repology",
       "depNameTemplate": "alpine_3_23/{{{depName}}}",
       "versioningTemplate": "loose"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["(^|/)Dockerfile$"],
+      "matchStrings": [
+        "FROM (?<depName>thwint/alpine-base):(?<currentValue>[a-z0-9.-]+)"
+      ],
+      "datasourceTemplate": "docker"
     }
   ],
   "packageRules": [
     {
-      "matchDatasources": [
-        "repology"
-      ],
-      "groupName": "alpine packages"
+      "matchPackageNames": ["thwint/alpine-base"],
+      "groupName": "internal base image",
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin"]
+    },
+    {
+      "matchDatasources": ["repology"],
+      "groupName": "alpine packages",
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin"]
     }
   ]
 }
