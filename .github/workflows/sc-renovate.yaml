@@ -7,7 +7,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "42 */8 * * *"  # Run Renovate every 8th hour
+    - cron: "42 3 * * 1" # Run Renovate every Monday morning
 jobs:
   renovate-bot:
     name: Renovate
@@ -31,6 +31,5 @@ jobs:
         uses: renovatebot/github-action@abd08c7549b2a864af5df4a2e369c43f035a6a9d  # v46.1.5
         env:
           RENOVATE_GIT_AUTHOR: "Renovate Bot <renovate-bot@users.noreply.github.com>"
-          RENOVATE_REPOSITORIES: '["wintersoftch/DockerImages"]' # Or use RENOVATE_AUTODISCOVER
           RENOVATE_TOKEN: ${{ steps.app-token.outputs.token }}
           LOG_LEVEL: debug
