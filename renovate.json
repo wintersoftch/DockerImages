@@ -3,8 +3,38 @@
   "extends": [
     "config:best-practices"
   ],
+  "gitAuthor": "Wintersoft Renovate Bot[bot] <2513063+WintersoftRenovateBot[bot]@users.noreply.github.com>",
   "vulnerabilityAlerts": {
     "enabled": true
   },
-  "minimumReleaseAge": "14 days"
+  "minimumReleaseAge": "14 days",
+  "minimumReleaseAgeBehaviour": "ignore",
+  "dockerfile": {
+    "managerFilePatterns": [
+      "/(^|/)[^/]+/Dockerfile$/"
+    ]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
+      ],
+      "matchStrings": [
+        "apk add [^\\n]*?(\\s|--no-cache\\s)(?<depName>[a-z0-9-]+)=(?<currentValue>[0-9][^\\s&\\\\|]*)"
+      ],
+      "matchStringsStrategy": "any",
+      "datasourceTemplate": "repology",
+      "depNameTemplate": "alpine_3_23/{{{depName}}}",
+      "versioningTemplate": "loose"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "repology"
+      ],
+      "groupName": "alpine packages"
+    }
+  ]
 }
