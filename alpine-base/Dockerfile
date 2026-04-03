@@ -1,6 +1,6 @@
-FROM alpine:3.23@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
+FROM alpine:3.23
 
-RUN apk add --no-cache tzdata=2025b-r0 curl=8.17.0-r1 openssl=3.5.4-r0 \
+RUN apk add --no-cache tzdata=2026a-r0 curl=8.17.0-r1 openssl=3.5.4-r0 \
     ca-certificates=20251003-r0 && \
     update-ca-certificates && \
     cp /usr/share/zoneinfo/Europe/Zurich /etc/localtime && \
